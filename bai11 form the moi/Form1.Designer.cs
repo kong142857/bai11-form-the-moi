@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            richTextBox1 = new RichTextBox();
-            comboBox1 = new ComboBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtMoTaChiTiet = new RichTextBox();
+            cmbLoaiSP = new ComboBox();
+            txtMoTaNgan = new TextBox();
+            txtHinhAnh = new TextBox();
+            txtDonGia = new TextBox();
+            txtTen = new TextBox();
+            txtMaSP = new TextBox();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -44,14 +44,14 @@
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
-            btxoa = new Button();
-            btsua = new Button();
-            btthem = new Button();
-            btlammoi = new Button();
+            btnLamMoi = new Button();
+            btnSua = new Button();
+            btnXoa = new Button();
+            btnThem = new Button();
             panel3 = new Panel();
             dataGridView1 = new DataGridView();
             button5 = new Button();
-            textBox6 = new TextBox();
+            txtTimKiem = new TextBox();
             label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -61,13 +61,13 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(richTextBox1);
-            panel1.Controls.Add(comboBox1);
-            panel1.Controls.Add(textBox5);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox3);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txtMoTaChiTiet);
+            panel1.Controls.Add(cmbLoaiSP);
+            panel1.Controls.Add(txtMoTaNgan);
+            panel1.Controls.Add(txtHinhAnh);
+            panel1.Controls.Add(txtDonGia);
+            panel1.Controls.Add(txtTen);
+            panel1.Controls.Add(txtMaSP);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
@@ -80,59 +80,59 @@
             panel1.Size = new Size(307, 348);
             panel1.TabIndex = 0;
             // 
-            // richTextBox1
+            // txtMoTaChiTiet
             // 
-            richTextBox1.Location = new Point(106, 231);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(184, 55);
-            richTextBox1.TabIndex = 12;
-            richTextBox1.Text = "";
+            txtMoTaChiTiet.Location = new Point(106, 231);
+            txtMoTaChiTiet.Name = "txtMoTaChiTiet";
+            txtMoTaChiTiet.Size = new Size(184, 55);
+            txtMoTaChiTiet.TabIndex = 12;
+            txtMoTaChiTiet.Text = "";
             // 
-            // comboBox1
+            // cmbLoaiSP
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6" });
-            comboBox1.Location = new Point(106, 305);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(184, 23);
-            comboBox1.TabIndex = 0;
+            cmbLoaiSP.FormattingEnabled = true;
+            cmbLoaiSP.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6" });
+            cmbLoaiSP.Location = new Point(106, 305);
+            cmbLoaiSP.Name = "cmbLoaiSP";
+            cmbLoaiSP.Size = new Size(184, 23);
+            cmbLoaiSP.TabIndex = 0;
             // 
-            // textBox5
+            // txtMoTaNgan
             // 
-            textBox5.Location = new Point(106, 184);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(184, 23);
-            textBox5.TabIndex = 11;
+            txtMoTaNgan.Location = new Point(106, 184);
+            txtMoTaNgan.Name = "txtMoTaNgan";
+            txtMoTaNgan.Size = new Size(184, 23);
+            txtMoTaNgan.TabIndex = 11;
             // 
-            // textBox4
+            // txtHinhAnh
             // 
-            textBox4.Location = new Point(106, 145);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(184, 23);
-            textBox4.TabIndex = 10;
-            textBox4.TextChanged += textBox4_TextChanged;
+            txtHinhAnh.Location = new Point(106, 145);
+            txtHinhAnh.Name = "txtHinhAnh";
+            txtHinhAnh.Size = new Size(184, 23);
+            txtHinhAnh.TabIndex = 10;
+            txtHinhAnh.TextChanged += textBox4_TextChanged;
             // 
-            // textBox3
+            // txtDonGia
             // 
-            textBox3.Location = new Point(106, 101);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(184, 23);
-            textBox3.TabIndex = 9;
+            txtDonGia.Location = new Point(106, 101);
+            txtDonGia.Name = "txtDonGia";
+            txtDonGia.Size = new Size(184, 23);
+            txtDonGia.TabIndex = 9;
             // 
-            // textBox2
+            // txtTen
             // 
-            textBox2.Location = new Point(106, 59);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(184, 23);
-            textBox2.TabIndex = 8;
+            txtTen.Location = new Point(106, 59);
+            txtTen.Name = "txtTen";
+            txtTen.Size = new Size(184, 23);
+            txtTen.TabIndex = 8;
             // 
-            // textBox1
+            // txtMaSP
             // 
-            textBox1.Location = new Point(106, 20);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(85, 23);
-            textBox1.TabIndex = 7;
-            textBox1.TextChanged += textBox1_TextChanged;
+            txtMaSP.Location = new Point(106, 20);
+            txtMaSP.Name = "txtMaSP";
+            txtMaSP.Size = new Size(85, 23);
+            txtMaSP.TabIndex = 7;
+            txtMaSP.TextChanged += textBox1_TextChanged;
             // 
             // label7
             // 
@@ -199,60 +199,60 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(btxoa);
-            panel2.Controls.Add(btsua);
-            panel2.Controls.Add(btthem);
-            panel2.Controls.Add(btlammoi);
+            panel2.Controls.Add(btnLamMoi);
+            panel2.Controls.Add(btnSua);
+            panel2.Controls.Add(btnXoa);
+            panel2.Controls.Add(btnThem);
             panel2.Location = new Point(12, 387);
             panel2.Name = "panel2";
             panel2.Size = new Size(313, 51);
             panel2.TabIndex = 1;
             // 
-            // btxoa
+            // btnLamMoi
             // 
-            btxoa.Location = new Point(234, 13);
-            btxoa.Name = "btxoa";
-            btxoa.Size = new Size(75, 23);
-            btxoa.TabIndex = 3;
-            btxoa.Text = "Xoa";
-            btxoa.UseVisualStyleBackColor = true;
-            btxoa.Click += btxoa_Click;
+            btnLamMoi.Location = new Point(12, 13);
+            btnLamMoi.Name = "btnLamMoi";
+            btnLamMoi.Size = new Size(76, 23);
+            btnLamMoi.TabIndex = 5;
+            btnLamMoi.Text = "Lam moi";
+            btnLamMoi.UseVisualStyleBackColor = true;
+            btnLamMoi.Click += btnLamMoi_Click;
             // 
-            // btsua
+            // btnSua
             // 
-            btsua.Location = new Point(153, 13);
-            btsua.Name = "btsua";
-            btsua.Size = new Size(75, 23);
-            btsua.TabIndex = 2;
-            btsua.Text = "Sua";
-            btsua.UseVisualStyleBackColor = true;
-            btsua.Click += button3_Click;
+            btnSua.Location = new Point(172, 13);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(65, 23);
+            btnSua.TabIndex = 4;
+            btnSua.Text = "Sua";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
-            // btthem
+            // btnXoa
             // 
-            btthem.Location = new Point(76, 13);
-            btthem.Name = "btthem";
-            btthem.Size = new Size(71, 23);
-            btthem.TabIndex = 1;
-            btthem.Text = "Them";
-            btthem.UseVisualStyleBackColor = true;
-            btthem.Click += btthem_Click;
+            btnXoa.Location = new Point(243, 13);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(66, 23);
+            btnXoa.TabIndex = 3;
+            btnXoa.Text = "Xoa";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btxoa_Click;
             // 
-            // btlammoi
+            // btnThem
             // 
-            btlammoi.Location = new Point(4, 13);
-            btlammoi.Name = "btlammoi";
-            btlammoi.Size = new Size(66, 23);
-            btlammoi.TabIndex = 0;
-            btlammoi.Text = "Lam moi";
-            btlammoi.UseVisualStyleBackColor = true;
-            btlammoi.Click += button1_Click;
+            btnThem.Location = new Point(94, 13);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(72, 23);
+            btnThem.TabIndex = 1;
+            btnThem.Text = "Them";
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btthem_Click;
             // 
             // panel3
             // 
             panel3.Controls.Add(dataGridView1);
             panel3.Controls.Add(button5);
-            panel3.Controls.Add(textBox6);
+            panel3.Controls.Add(txtTimKiem);
             panel3.Controls.Add(label8);
             panel3.Location = new Point(331, 17);
             panel3.Name = "panel3";
@@ -276,13 +276,14 @@
             button5.TabIndex = 2;
             button5.Text = "Tim kiem:";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
-            // textBox6
+            // txtTimKiem
             // 
-            textBox6.Location = new Point(80, 15);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(228, 23);
-            textBox6.TabIndex = 1;
+            txtTimKiem.Location = new Point(80, 15);
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.Size = new Size(228, 23);
+            txtTimKiem.TabIndex = 1;
             // 
             // label8
             // 
@@ -303,7 +304,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "quản lý sản phẩm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -318,10 +319,8 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
-        private Button btxoa;
-        private Button btsua;
-        private Button btthem;
-        private Button btlammoi;
+        private Button btnXoa;
+        private Button btnThem;
         private Label label7;
         private Label label6;
         private Label label5;
@@ -329,16 +328,18 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private ComboBox comboBox1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private RichTextBox richTextBox1;
+        private ComboBox cmbLoaiSP;
+        private TextBox txtMoTaNgan;
+        private TextBox txtHinhAnh;
+        private TextBox txtDonGia;
+        private TextBox txtTen;
+        private TextBox txtMaSP;
+        private RichTextBox txtMoTaChiTiet;
         private Label label8;
         private Button button5;
-        private TextBox textBox6;
+        private TextBox txtTimKiem;
         private DataGridView dataGridView1;
+        private Button btnSua;
+        private Button btnLamMoi;
     }
 }

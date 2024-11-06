@@ -1,20 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace bai11_form_the_moi
 {
     public partial class Form1 : Form
     {
-        private BindingList<Product> productList = new BindingList<Product>();
-
         public Form1()
         {
             InitializeComponent();
+        }
+        KetNoi kn = new KetNoi();
 
-            dataGridView1.DataSource = productList;
+        private void frmSanPham_Load(object sender, EventArgs e)
+        {
+            getLoaiSP();
+            getData();
         }
 
+        public void getLoaiSP()
+        {
+            string query = "select * from LoaiSanPham";
+            DataSet ds = kn.LayDuLieu(query);
+            cmbLoaiSP.DataSource = ds.Tables[0];
+            cmbLoaiSP.DisplayMember = "Ten";
+            cmbLoaiSP.ValueMember = "MaLoaiSP";
+
+        }
+
+        public void getData()
+        {
+            string query = "select * from SanPham";
+            DataSet ds = kn.LayDuLieu(query);
+            dataGridView1.DataSource = ds.Tables[0];
+        }
         private void label8_Click(object sender, EventArgs e)
         {
 
@@ -25,91 +50,43 @@ namespace bai11_form_the_moi
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            textBox5.Text = "";
-            textBox6.Text = "";
-            comboBox1.Text = "";
-        }
-
         private void btthem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text) ||
-                string.IsNullOrEmpty(textBox2.Text) ||
-                string.IsNullOrEmpty(textBox3.Text) ||
-                string.IsNullOrEmpty(textBox4.Text) ||
-                string.IsNullOrEmpty(textBox5.Text) ||
-                string.IsNullOrEmpty(textBox6.Text) ||
-                string.IsNullOrEmpty(comboBox1.Text))
+            string query = string.Format(
+                "insert into SanPham VALUES('{0}', N'{1}', {2}, N'{3}', N'{4}', N'{5}', '{6}')",
+                txtMaSP.Text,
+                txtTen.Text,
+                txtDonGia.Text,
+                txtHinhAnh.Text,
+                txtMoTaNgan.Text,
+                txtMoTaChiTiet.Text,
+                cmbLoaiSP.SelectedValue
+            );
+            if (kn.ThucThi(query) == true)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin sản phẩm!");
-                return;
+                MessageBox.Show("Thêm mới thành công!");
+                btnLamMoi.PerformClick();
             }
-
-            // Chuyển đổi giá trị từ TextBox thành decimal
-            if (!decimal.TryParse(textBox3.Text, out decimal price))
+            else
             {
-                MessageBox.Show("Giá sản phẩm phải là số hợp lệ!");
-                return;
-            }
-
-            // Tạo sản phẩm mới từ thông tin nhập vào
-            Product newProduct = new Product()
-            {
-                MaSP = textBox1.Text,
-                TenSP = textBox2.Text,
-                Price = price,
-                Hinhanh = textBox4.Text,
-                Motangan = textBox5.Text,
-                Motachitiet = textBox6.Text
-            };
-
-            // Thêm sản phẩm mới vào BindingList
-            productList.Add(newProduct);
-
-            // Làm mới DataGridView
-            dataGridView1.Refresh();
-
-            // Làm sạch các ô TextBox sau khi thêm
-            button1_Click(sender, e);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null)
-            {
-                // Lấy sản phẩm đang được chọn từ DataGridView
-                var selectedProduct = (Product)dataGridView1.CurrentRow.DataBoundItem;
-
-                // Cập nhật thông tin sản phẩm từ các ô TextBox
-                selectedProduct.MaSP = textBox1.Text;
-                selectedProduct.TenSP = textBox2.Text;
-                selectedProduct.Price = decimal.Parse(textBox3.Text);
-                selectedProduct.Hinhanh = textBox4.Text;
-                selectedProduct.Motangan = textBox5.Text;
-                selectedProduct.Motachitiet =textBox6.Text;
-
-                // Làm mới DataGridView để hiển thị thông tin mới
-                dataGridView1.Refresh();
+                MessageBox.Show("Thêm mới thất bại!");
             }
         }
 
         private void btxoa_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null)
+            string query = string.Format(
+                "delete from SanPham where MaSP = '{0}'",
+                txtMaSP.Text
+            );
+            if (kn.ThucThi(query) == true)
             {
-                // Lấy sản phẩm đang được chọn từ DataGridView
-                var selectedProduct = (Product)dataGridView1.CurrentRow.DataBoundItem;
-
-                // Xóa sản phẩm khỏi BindingList
-                productList.Remove(selectedProduct);
-
-                // Làm mới DataGridView
-                dataGridView1.Refresh();
+                MessageBox.Show("Xóa thành công!");
+                btnLamMoi.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("Xóa thất bại!");
             }
         }
 
@@ -120,28 +97,77 @@ namespace bai11_form_the_moi
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            int r = e.RowIndex;
+            if (r >= 0)
             {
-                // Lấy sản phẩm đang được chọn và hiển thị thông tin lên các ô TextBox
-                var selectedProduct = (Product)dataGridView1.Rows[e.RowIndex].DataBoundItem;
-
-                textBox1.Text = selectedProduct.MaSP;
-                textBox2.Text = selectedProduct.TenSP;
-                textBox3.Text = selectedProduct.Price.ToString();
-                textBox4.Text = selectedProduct.Hinhanh;
-                textBox5.Text = selectedProduct.Motangan;
-                textBox6.Text = selectedProduct.Motachitiet;
+                txtMaSP.Enabled = false;
+                btnThem.Enabled = false;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                txtMaSP.Text = dataGridView1.Rows[r].Cells["MaSP"].Value.ToString();
+                txtTen.Text = dataGridView1.Rows[r].Cells["Ten"].Value.ToString();
+                txtDonGia.Text = dataGridView1.Rows[r].Cells["DonGia"].Value.ToString();
+                txtHinhAnh.Text = dataGridView1.Rows[r].Cells["HinhAnh"].Value.ToString();
+                txtMoTaNgan.Text = dataGridView1.Rows[r].Cells["MoTaNgan"].Value.ToString();
+                txtMoTaChiTiet.Text = dataGridView1.Rows[r].Cells["MoTaChiTiet"].Value.ToString();
+                cmbLoaiSP.SelectedValue = dataGridView1.Rows[r].Cells["MaLoaiSP"].Value.ToString();
             }
         }
-    }
-    public class Product
-    {
-        public string MaSP { get; set; }
-        public string TenSP { get; set; }
-        public decimal Price { get; set; }
-        public string Hinhanh { get; set; }
-        public string Motangan { get; set; }
-        public string Motachitiet { get; set; }
 
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            string query = string.Format(
+                "update SanPham set Ten = N'{1}', DonGia = {2}, HinhAnh = N'{3}', MoTaNgan = N'{4}', MoTaChiTiet = N'{5}', MaLoaiSP = '{6}' where MaSP = '{0}'",
+                txtMaSP.Text,
+                txtTen.Text,
+                txtDonGia.Text,
+                txtHinhAnh.Text,
+                txtMoTaNgan.Text,
+                txtMoTaChiTiet.Text,
+                cmbLoaiSP.SelectedValue
+            );
+            if (kn.ThucThi(query) == true)
+            {
+                MessageBox.Show("Sửa thành công!");
+                btnLamMoi.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("Sửa thất bại!");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string query = string.Format(
+                "select SanPham.* from SanPham inner join LoaiSanPham on SanPham.MaLoaiSP = LoaiSanPham.MaLoaiSP where LoaiSanPham.Ten like N'%{0}%'",
+                txtTimKiem.Text
+            );
+            DataSet ds = kn.LayDuLieu(query);
+            dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            clearText();
+            getData();
+        }
+
+        public void clearText()
+        {
+            txtMaSP.Enabled = true;
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            txtMaSP.Text = "";
+            txtTen.Text = "";
+            txtTimKiem.Text = "";
+            txtDonGia.Text = "";
+            txtHinhAnh.Text = "";
+            txtMoTaNgan.Text = "";
+            txtMoTaChiTiet.Text = "";
+            //txtLoaiSP.Text = "";
+        }
     }
 }
+
